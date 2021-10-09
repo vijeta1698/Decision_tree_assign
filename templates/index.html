@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Titanic Survival Predictor</title>
+	<link rel="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<style>
+	body {
+		padding: 0;
+		font-family: consolas;
+		margin: 0;
+		background-image: url("{{ url_for('static',filename='titanic.jpg') }}");
+		background-size: cover;
+		background-attachment: fixed;
+		background-position: center;
+	}
+	.mainHeader {
+		background-color: rgba(0, 0, 0, 0.26)
+		padding: 20px;
+		font-size: 25px;
+		color: white;
+		text-align: center;
+
+	}
+
+
+
+    @keyframes blinker{
+        0%{border-color: white;}
+        50%{border-color: black;}
+        100%{border-color: white;}
+    }
+
+	.mainCont {
+
+		width: 95%;
+		margin: 10px auto;
+		padding: 20px;
+		text-align: center;
+	}
+
+	.txtBox {
+		padding: 5px 15px;
+		border: 0;
+		border-top-right-radius: 5px;
+		border-top-left-radius: 5px;
+		border-bottom: 3px solid rgb(68, 68, 68);
+		color: rgb(56, 56, 56);
+		padding-left: 5px;
+		font-size: 15px;
+		width:110%;
+	}
+
+	.btnAction {
+		padding: 5px 15px;
+		text-decoration: none;
+		background-color: rgb(20, 20, 20);
+		color: white;
+		cursor: pointer;
+		border-radius: 5px;
+		font-size: 18px;
+	}
+
+	.btnAction:hover {
+		background-color: rgb(39, 39, 39);
+	}
+
+	.myTable {
+		border: 0;
+		border-collapse: collapse;
+		width: 250px;
+		margin: auto;
+		text-align: left;
+	}
+
+	.subCont {
+		width: 50%;
+		margin: auto;
+	}
+	.cred{background:red !important }
+	</style>
+</head>
+
+<body>
+	<div class="header mainHeader jumbotron">
+		<h1>Predicting Survival in the Titanic</h1> </div>
+	<div class="mainCont">
+		<div class="subCont">
+			<form action="{{ url_for('predict') }}" id="mainForm" method="post">
+				<h3 style = "color: #ff0000ba; font-size: x-large;">
+					{{ prediction_text }}
+				</h3>
+				<table class="myTable">
+					<tbody>
+						<tr>
+							<td>
+								<input name="txtAge"  type="text" required placeholder="Age" class="txtBox"> </td>
+						</tr>
+
+						<tr>
+							<td><input name="txtSibsp" type="text" required placeholder = "Number of Siblings/spouse aboard" class="txtBox"> </td>
+
+						</tr>
+						<tr>
+							<td>
+								<input name="txtParch" type="text" required placeholder="Number of parents/children aboard" class="txtBox"> </td>
+
+						</tr>
+						<tr>
+							<td>
+								<input name="txtFare" type="text" required placeholder="Passenger Fare" class="txtBox"> </td>
+						</tr>
+						<tr>
+							<td>
+								<input name="txtPclass_2" type="text" required placeholder="Passenger Class" class="txtBox"> </td>
+
+						</tr>
+
+						<tr>
+							<td><input name="txtSex" type="text" required placeholder="Sex (0 = Female,1=Male)" class="txtBox"> </td>
+						</tr>
+
+					    <tr>
+							<td> <button type="submit"  class="btnAction cred" name="btnAirTemp"> PREDICT</button> </td>
+						</tr>
+
+					</tbody>
+				</table>
+			</form>
+		</div>
+
+		<div class="container" style="text-align:justify;width: 50%;margin: 5rem auto;font-family: arial;color: black;text-shadow: 0px 1px 1px black;color: white;background-color: #0000009e;padding: 5px;border-radius: 5px;font-weight: bold;">
+			<p>Instructions </p>
+			<p> Passenger class must be 1 or 2 or 3</p>
+			<p> For better results enter values as instructed</p>
+
+		</div>
+
+	</div>
+</body>
+
+</html>
